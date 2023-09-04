@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PegasusWebAPITutorial.Models.ORM;
 
@@ -11,9 +12,10 @@ using PegasusWebAPITutorial.Models.ORM;
 namespace PegasusWebAPITutorial.Migrations
 {
     [DbContext(typeof(PegasusContext))]
-    partial class PegasusContextModelSnapshot : ModelSnapshot
+    [Migration("20230904104440_productTableUpdateIsDeleted")]
+    partial class productTableUpdateIsDeleted
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -33,7 +35,7 @@ namespace PegasusWebAPITutorial.Migrations
                     b.Property<DateTime>("AddDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("IsDeleted")
+                    b.Property<bool?>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<string>("Name")
@@ -66,7 +68,7 @@ namespace PegasusWebAPITutorial.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsDeleted")
+                    b.Property<bool?>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<string>("Name")

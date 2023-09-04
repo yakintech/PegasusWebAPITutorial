@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PegasusWebAPITutorial.Models.ORM;
 
@@ -11,9 +12,10 @@ using PegasusWebAPITutorial.Models.ORM;
 namespace PegasusWebAPITutorial.Migrations
 {
     [DbContext(typeof(PegasusContext))]
-    partial class PegasusContextModelSnapshot : ModelSnapshot
+    [Migration("20230904104228_productTableCreated")]
+    partial class productTableCreated
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
