@@ -34,6 +34,8 @@ namespace PegasusWebAPITutorial.Controllers
         [HttpPost]
         public IActionResult Create(CreateProductRequestDto model)
         {
+
+
             Product product = new Product();
             product.Name = model.Name;
             product.UnitPrice = model.UnitPrice;
@@ -49,6 +51,44 @@ namespace PegasusWebAPITutorial.Controllers
             responsetDto.Id = product.Id;
 
             return Ok(responsetDto);
+        }
+
+        [HttpDelete]
+        public IActionResult Delete(int id)
+        {
+            var product = context.Products.Find(id);
+            context.Products.Remove(product);
+            context.SaveChanges();
+
+            DeleteProductResponseDto deleteProductResponseDto = new DeleteProductResponseDto();
+            deleteProductResponseDto.Id = id;
+
+            return Ok(deleteProductResponseDto);
+        }
+
+        [HttpPut]
+        public IActionResult Put(UpdateProductRequestDto model)
+        {
+            var product = context.Products.Find(model.Id);
+
+            if(product != null)
+            {
+                product.Name = model.Name;
+                context.SaveChanges();
+
+                UpdateProductResponseDto responseModel = new UpdateProductResponseDto();
+                responseModel.Name = product.Name;
+                responseModel.UnitPrice = product.UnitPrice;
+                responseModel.UnitsInStock = product.UnitsInStock;
+                responseModel.Id = product.Id;
+
+                return Ok(responseModel);
+            }
+            else
+            {
+                return BadRequest();
+            }
+          
         }
     }
 }
